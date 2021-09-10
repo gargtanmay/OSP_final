@@ -16,7 +16,7 @@ import Prediction from './components/Prediction';
 const App = () => {
   return (
     <div>
-      <Router >
+      <Router basename="/OSP_final" >
       <Switch>
           <Route exact path="/">
           <Main/>
