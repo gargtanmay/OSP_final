@@ -20,7 +20,7 @@ export default function Prediction(props) {
               <div id="sleep-form-module" style={{ fontFamily: "Montserrat", paddingLeft: "180px", paddingTop: "10px", color: "white" }}>
                 <p style={{fontSize:"27px"}} >
                   <br /> Go to bed at: <br/></p>
-                  <p style={{fontSize:"60px"}}>{myparam}</p>
+                  <p style={{fontSize:"60px"}}>{myparam} PM</p>
 
               </div>
               <img className="moon-icon" src={Moon} alt="moon" style={{ position: "relative", bottom: "150px" }} />
@@ -28,7 +28,7 @@ export default function Prediction(props) {
           </div>
           <br/><br /><br />
           <div className="buttons">
-            <button className="btn-hover color-1" style={{ position: "relative", left: "80px", }}>To Wake up at <br/> {myparam1}</button>
+            <button className="btn-hover color-1" style={{ position: "relative", left: "80px", }}>To Wake up at <br/> {myparam1} AM</button>
           </div>
         </div>
 
