@@ -11,6 +11,19 @@ import { useHistory } from "react-router-dom";
 export default function Main() {
   const history = useHistory();
   const [wake, setWake] = useState("");
+  const naps = 0;
+  const sleep_minutes = 0;
+  const age=22;
+  const isi =16 ;
+  const weight =62;
+  const height =170;
+  const calories=1939;
+  const stairs = 22;
+  const active_calories = 849;
+  const number_steps = 12907;
+
+
+  /*
   const [naps, setNaps] = useState("");
   const [nm, setNm] = useState("");
   const [age, setAge] = useState("");
@@ -21,24 +34,23 @@ export default function Main() {
   const [ac, setAc] = useState("");
   const [s, setS] = useState("");
   const [ns, setNs] = useState("");
+  */
   const handleSubmit = (evt) => {
     evt.preventDefault();
     alert(`Output ${wake}`)
   }
 
   const handleClick = () => {
-    if (naps !== "") {
+    if (wake !== "") {
       axios.post("http://localhost:5000/OSP",
         {
-          "wake": wake, "naps": naps,
-          "nm": nm, "age": age,
-          "weight": weight, "i": i, "h": h, "c": c, "ac": ac, "s": s, "ns": ns
+          "wake": wake 
         })
         .then((response) => {
-          console.log(response);
+          console.log(response["data"]["wake"]);
           history.push({
             pathname: '/predict',
-            state: response["data"]["test"],
+            state:{"pred":  response["data"]["pred"], "wake" : response["data"]["wake"]}
           });
           //document.getElementsByClassName("sentiment-text")[0].innerText = response["data"]["sentiment"];
         })
@@ -113,11 +125,11 @@ export default function Main() {
                   <div className="row">
                     <div className="col-6">
                       <label for="nap_total_freq" style={{ paddingTop: "10px" }}>Number Of Naps:</label>
-                      <input value={naps} onChange={e => setNaps(e.target.value)} id="nap_total_time" className="nap-form-content" type="number" name="nap_total_time" placeholder="... times" required />
+                      <input id="nap_total_time" value={naps} className="nap-form-content" type="number" name="nap_total_time" placeholder="... times" required />
                     </div>
                     <div className="col-6">
                       <label for="nap_total_time" style={{ position: "relative", bottom: "18px" }}><br />Total Nap Minutes:</label>
-                      <input style={{ position: "relative", bottom: "18px" }} value={nm} onChange={e => setNm(e.target.value)} id="nap_total_time" className="nap-form-content" type="number" name="nap_total_time" placeholder="... mins" required />
+                      <input value = { sleep_minutes} style={{ position: "relative", bottom: "18px" }} id="nap_total_time" className="nap-form-content" type="number" name="nap_total_time" placeholder="... mins" required />
                     </div></div>
                 </form>
               </div>
@@ -133,7 +145,7 @@ export default function Main() {
                   <div id="age-form-module" style={{ position: "relative", bottom: "90px", left: "70px", width: "150px" }}>
                     <form method="post" className="form">
                       <label for="age" ><br />Age:</label>
-                      <input value={age} onChange={e => setAge(e.target.value)} id="age" className="data-form-content" type="number" name="age" autocomplete="on" placeholder="... years old" required />
+                      <input value={age}  id="age" className="data-form-content" type="number" name="age" autocomplete="on" placeholder="... years old" required />
                     </form>
                   </div>
                 </div>
@@ -146,7 +158,7 @@ export default function Main() {
                   <div id="weight-form-module" style={{ position: "relative", bottom: "110px", left: "70px", width: "150px" }}>
                     <form method="post" className="form">
                       <label for="weight"><br />Weight:</label>
-                      <input value={weight} onChange={e => setWeight(e.target.value)} id="weight" className="data-form-content" type="number" name="isi" autocomplete="on" placeholder="... kg" required />
+                      <input value ={weight}id="weight" className="data-form-content" type="number" name="isi" autocomplete="on" placeholder="... kg" required />
                     </form>
                   </div>
                 </div></div></div>
@@ -161,7 +173,7 @@ export default function Main() {
                   <div id="isi-form-module" style={{ position: "relative", bottom: "90px", left: "70px", width: "150px" }}>
                     <form method="post" className="form">
                       <label for="isi"><br />ISI:</label>
-                      <input value={i} onChange={e => setI(e.target.value)} id="isi" className="data-form-content" type="number" name="weight" autocomplete="on" placeholder="..." required />
+                      <input value={isi} id="isi" className="data-form-content" type="number" name="weight" autocomplete="on" placeholder="..." required />
                     </form>
                   </div>
                 </div></div>
@@ -173,7 +185,7 @@ export default function Main() {
                   <div id="height-form-module" style={{ position: "relative", bottom: "110px", left: "70px", width: "150px" }}>
                     <form method="post" className="form">
                       <label for="height" ><br />Height:</label>
-                      <input value={h} onChange={e => setH(e.target.value)} id="height" className="data-form-content" type="number" name="height" autocomplete="on" placeholder="... cm" required />
+                      <input value={height} id="height" className="data-form-content" type="number" name="height" autocomplete="on" placeholder="... cm" required />
                     </form>
                   </div>
                 </div>
@@ -199,16 +211,16 @@ export default function Main() {
                     <div className="col-1"></div>
                     <div className="col-5" >
                       <label for="cal_consume" style={{ paddingTop: "27px" }}><br />Calories Consumed:</label>
-                      <input value={c} onChange={e => setC(e.target.value)} id="cal_consume" className="nap-form-content" type="number" name="cal_consume" placeholder="... cal" required />
+                      <input value={calories} id="cal_consume" className="nap-form-content" type="number" name="cal_consume" placeholder="... cal" required />
                       <label for="active_cal" style={{ paddingTop: "27px" }}><br />Active Calories:</label>
-                      <input value={ac} onChange={e => setAc(e.target.value)} id="active_cal" className="nap-form-content" type="number" name="active_cal" placeholder="... cal" required />
+                      <input value={active_calories} id="active_cal" className="nap-form-content" type="number" name="active_cal" placeholder="... cal" required />
                     </div>
                     <div className="col-5">
 
                       <label for="stairs" style={{ paddingTop: "27px" }}><br />Stairs Climbed:</label>
-                      <input value={s} onChange={e => setS(e.target.value)} id="stairs" className="nap-form-content" type="number" name="stairs" placeholder="... stairs" required />
+                      <input value={stairs }id="stairs" className="nap-form-content" type="number" name="stairs" placeholder="... stairs" required />
                       <label for="active_ratio" style={{ paddingTop: "27px" }}><br />Number of Steps:</label>
-                      <input value={ns} onChange={e => setNs(e.target.value)} id="active_ratio" className="nap-form-content" type="number" name="active_ratio" placeholder="...steps" required />
+                      <input value={number_steps} id="active_ratio" className="nap-form-content" type="number" name="active_ratio" placeholder="...steps" required />
                     </div></div>
                 </form>
               </div>

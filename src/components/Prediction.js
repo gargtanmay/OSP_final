@@ -4,7 +4,8 @@ import { useLocation } from "react-router-dom";
 import LineChart from "./LineChart"
 export default function Prediction(props) {
   const location = useLocation();
-  const myparam = location.state;
+  const myparam = location.state["pred"];
+  const myparam1 = location.state["wake"];
   console.log(myparam);
   return (
     <div>
@@ -27,7 +28,7 @@ export default function Prediction(props) {
           </div>
           <br/><br /><br />
           <div className="buttons">
-            <button className="btn-hover color-1" style={{ position: "relative", left: "80px", }}>To Wake up at </button>
+            <button className="btn-hover color-1" style={{ position: "relative", left: "80px", }}>To Wake up at <br/> {myparam1}</button>
           </div>
         </div>
 
