@@ -7,7 +7,7 @@ from sklearn.preprocessing import MinMaxScaler
 from flask import Flask, jsonify, request
 app = Flask(__name__)
 CORS(app)
-y = pd.read_csv('C:/Users/tanma/Downloads/NUS/Optimal-Sleep-Pattern-ReactJS-main/ospapp/2woutputs.csv')
+y = pd.read_csv('C:/Users/tanma/Documents/GitHub/OSP/2woutputs.csv')
 scaler_y = MinMaxScaler(feature_range = (0,1))
 output_scaler = scaler_y.fit(y['sleep_min'].values.reshape(1,-1))
 
@@ -16,7 +16,7 @@ def predict_sentiment():
     data = request.get_json()
     
     
-    data1 = np.load('C:/Users/tanma/Downloads/NUS/Optimal-Sleep-Pattern-ReactJS-main/ospapp/X_test_scaled.npy')
+    data1 = np.load('C:/Users/tanma/Documents/GitHub/OSP/X_test_scaled.npy')
     model = keras.models.load_model('best_nn_model_13r2_62mae_22mape.h5')
     X_test = [data['wake']][0]
     X = (int(X_test[0])*10)+(int(X_test[1])) + (int(X_test[2])*10+int(X_test[3]))/60
