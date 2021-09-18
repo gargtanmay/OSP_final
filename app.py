@@ -25,8 +25,21 @@ def predict_sentiment():
     y_final = (X-y_pred)
     if (y_final < 0):
         y_final = 12 + y_final
-    print(X_test,y_pred)
-    return jsonify({"wake":X_test,"pred": round(y_final,2)})
+    y_final = round(y_final,2)
+    if (str(y_final).find(".")):
+        hr = int(str(y_final).split('.')[0])
+        min = int(str(y_final).split('.')[1])
+        if (min>59):
+            min = min-59
+            hr = hr + 1
+    ans = str(hr) + ":" + str(min)
+    time1 = "PM"
+    if hr < 6:
+        time1 = "AM"
+    else:
+        time1 = "PM"
+    print(X_test,y_pred ,time1 )
+    return jsonify({"wake":X_test,"pred": ans, "time1" : time1 })
 
 @app.route('/', methods=['GET'])
 def hello():

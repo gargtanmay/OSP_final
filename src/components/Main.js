@@ -50,7 +50,7 @@ export default function Main() {
           console.log(response["data"]["wake"]);
           history.push({
             pathname: '/predict',
-            state:{"pred":  response["data"]["pred"], "wake" : response["data"]["wake"]}
+            state:{"pred":  response["data"]["pred"], "wake" : response["data"]["wake"],"time1" : response["data"]["time1"] }
           });
           //document.getElementsByClassName("sentiment-text")[0].innerText = response["data"]["sentiment"];
         })

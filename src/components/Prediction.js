@@ -6,7 +6,8 @@ export default function Prediction(props) {
   const location = useLocation();
   const myparam = location.state["pred"];
   const myparam1 = location.state["wake"];
-  console.log(myparam);
+  const myparam2 = location.state["time1"];
+  console.log(location.state);
   return (
     <div>
 
@@ -20,7 +21,7 @@ export default function Prediction(props) {
               <div id="sleep-form-module" style={{ fontFamily: "Montserrat", paddingLeft: "180px", paddingTop: "10px", color: "white" }}>
                 <p style={{fontSize:"27px"}} >
                   <br /> Go to bed at: <br/></p>
-                  <p style={{fontSize:"60px"}}>{myparam} PM</p>
+                  <p style={{fontSize:"60px"}}>{myparam} {myparam2}</p>
 
               </div>
               <img className="moon-icon" src={Moon} alt="moon" style={{ position: "relative", bottom: "150px" }} />
